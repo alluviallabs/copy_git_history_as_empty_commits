@@ -1,3 +1,5 @@
+require 'optparse'
+
 require 'bundler'
 require 'rubygems'
 require 'bundler/setup'
@@ -5,11 +7,14 @@ Bundler.require(:default)
 
 # https://bundler.io/v1.5/bundler_setup.html
 
+require 'debug'
 require 'active_support'
 require 'active_support/core_ext/hash'
 require 'active_support/time'
 require 'active_support/json'
 require 'logger'
+require 'git'
+require 'neatjson'
 
 
 class App

@@ -60,22 +60,33 @@ Now you can extract all your commits descriptions and commits statistics to be a
     cd /home/alex/prj/copy_git_history_as_empty_commits/
     mkdir -p './tmp/commits_index_dir'
     
+    read -r -d '' msg_postfix << TXT
+    
+    ---------------
+    This commit was generated automatically,  
+    by https://github.com/alluviallabs/copy_git_history_as_empty_commits
+    
+    We took our private corporate project, deleted the git history,
+    removed our corporate stuff and imported most of the commits 
+    simply as a description and statistics, in order to understand 
+    who had what areas of responsibility for the project.  
+    TXT
+    
     ruby run.rb \ 
       --command build_index \
       --src_prj_dir '/home/alex/prj/private_project' \
       --index_dir './tmp/commits_index_dir' \
       --msg_prefix '[BLANK_COMMIT] ' \
-      --msg_postfix "This commit was generated automatically, by \
-        https://github.com/alluviallabs/copy_git_history_as_empty_commits"
+      --msg_postfix "$msg_postfix"
       
 Now, in the folder `./tmp/commits_index_dir` you will see extracted history index:
 
     ls -l ./tmp/commits_index_dir
       
-        0001911_<sha_1911>_john_smith/
+        c0001911_<sha_1911>_john_smith/
         ...
-        0000002_<sha_2>_vasya_pupkin/
-        0000001_<sha_1>_john_smith/  
+        c0000002_<sha_2>_vasya_pupkin/
+        c0000001_<sha_1>_john_smith/  
 
 Inside of the folder `0000001_<sha_1>_john_smith/`, there will be two files:        
         

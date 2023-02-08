@@ -49,23 +49,34 @@ HELP_MESSAGE = <<~'TXT'.gsub(/^ {2}/, '')
   
             USAGE EXAMPLE:
               Build commits-info-files index: 
-
-                ruby run.rb \ 
-                  --command build_index \
-                  --src_prj_dir '/home/alex/prj/private_project' \
-                  --index_dir '/tmp/commits_index_dir' \
-                  --msg_prefix '[BLANK_COMMIT] ' \
-                  --msg_postfix "This commit was generated automatically, by \
-                      https://github.com/alluviallabs/copy_git_history_as_empty_commits"
+                
+                  read -r -d '' msg_postfix << MSG
+                      
+                  ---------------
+                  This commit was generated automatically,  
+                  by https://github.com/alluviallabs/copy_git_history_as_empty_commits
+                  
+                  We took our private corporate project, deleted the git history,
+                  removed our corporate stuff and imported most of the commits 
+                  simply as a description and statistics, in order to understand 
+                  who had what areas of responsibility for the project. 
+                  MSG  
+  
+                  ruby run.rb \ 
+                    --command build_index \
+                    --src_prj_dir '/home/alex/prj/private_project' \
+                    --index_dir '/tmp/commits_index_dir' \
+                    --msg_prefix '[BLANK_COMMIT] ' \
+                    --msg_postfix "$msg_postfix"
   
               This command will take each git-commit from `--src_prj_dir` (/home/alex/prj/private_project) 
               AND inside folder `--index_dir` (`/tmp/commits_index_dir`) will generate something like this:
                 
                   /tmp/commits_index_dir/
-                      ./0001911_<sha_1911>_john_smith/  # most recent (last) commit
+                      ./c0001911_<sha_1911>_john_smith/  # most recent (last) commit
                       ...
-                      ./0000002_<sha_2>_vasya_pupkin/
-                      ./0000001_<sha_1>_john_smith/     # most ancient (first) commit
+                      ./c0000002_<sha_2>_vasya_pupkin/
+                      ./c0000001_<sha_1>_john_smith/     # most ancient (first) commit
                           ./message.txt                 # commit message (you can change it)
                           ./info.json                   # parsed commit metadata   
           
