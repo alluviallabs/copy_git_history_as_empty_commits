@@ -52,6 +52,9 @@ class BuildIndexCommand
       # 
       
       message = message + "\n\n" + @options[:msg_postfix] if @options[:msg_postfix].present? 
+      
+      message = message + "\n\n" + "[ORIGINAL_COMMIT_HASH: #{commit.sha}]\n" if @options[:do_include_original_sha] 
+      
       f.write(message)
     end
   end

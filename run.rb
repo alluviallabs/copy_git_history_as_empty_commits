@@ -22,6 +22,7 @@ OptionParser.new do |parser|
   parser.on('--msg_prefix=msg_prefix') { |msg_prefix| @options[:msg_prefix] = msg_prefix }
   parser.on('--msg_postfix=msg_postfix') { |msg_postfix| @options[:msg_postfix] = msg_postfix }
   parser.on('--skip_merge_commits') { |skip_merge_commits| @options[:skip_merge_commits] = skip_merge_commits }
+  parser.on('--include_original_sha') { |flag| @options[:do_include_original_sha] = flag }
 end.parse!
 
 show_help_and_exit! if @options.blank?

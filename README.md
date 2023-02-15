@@ -108,7 +108,7 @@ you can apply the new git history to the new project:
     ruby run.rb \ 
       --command apply_index \
       --index_dir './tmp/commits_index_dir' \
-      --new_prj_dir '/home/alex/prj/public_project_copy'
+      --dst_prj_dir '/home/alex/prj/public_project_copy'
      
 This command: 
  

@@ -147,8 +147,16 @@ HELP_MESSAGE = <<~'TXT'.gsub(/^ {2}/, '')
     --skip_merge_commits 
         Optional parameter. 
         If specified, all merge commits will be filtered  
-        This option is used on `build_index` stage.
-          
+        This option is used on `build_index` stage.     
+
+    --include_original_sha
+        Optional parameter
+        Do include original commit-hash into the new commit-message? 
+        If specified, at the bottom of the new commit-message, there will be line like this: 
+
+            [ORIGINAL_COMMIT_HASH: <commit.sha>]\n
+        
+        This option is used on `build_index` stage.  
 
 EXIT STATUS
      The copy_git_history_as_empty_commits utility exits with one of the following values:
